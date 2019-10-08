@@ -1,19 +1,50 @@
-.todo-list {
-  margin: 0 auto;
-  margin-top: 75px;
+.chirp {
+  padding: 10px;
+  margin: 10px;
+  background-color: #e8f9ff;
 }
 
-input.new-item:focus {
-  outline: none;
+.cool-font {
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  color: #1da1f2;
 }
 
-.list-group-item > button.delete,
-.list-group-item > button.complete {
-  float: right;
-  height: 25px;
-  margin-left: 5px;
+.jumbotron {
+  font-family: Montserrat, sans-serif;
+  color: white;
+  background-color: #1da1f2;
 }
 
-.edit {
+input,
+textarea {
+  margin: 20px;
+}
+
+.btn {
+  margin: 10px;
+  font-family: Montserrat, sans-serif;
+  color: #1da1f2;
+  background-color: white;
+  border-color: #1da1f2;
+  border-style: solid;
+  border-width: 2px;
+}
+
+p {
+  margin: 0;
+  font-size: 16px;
+}
+
+footer.pageFooter {
+  position: fixed;
+  left: 0;
+  bottom: 0;
   width: 100%;
+  height: 100px;
+  padding-top: 10px;
+  font-style: regular;
+  font-size: 8pt;
+  text-align: center;
+  background-color: #f8f9fa;
 }
