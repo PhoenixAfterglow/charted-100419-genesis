@@ -13,9 +13,9 @@ module.exports = function(app) {
   // GET route for getting all of the todos
   app.get("/api/chart", function(req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Charts.findAll({}).then(function(dbTodo) {
+    db.Charts.findAll({}).then(function(charteddb) {
       // We have access to the todos as an argument inside of the callback function
-      res.json(dbTodo);
+      res.json(chartedb);
     });
 
   });
@@ -28,9 +28,9 @@ module.exports = function(app) {
     db.Charts.create({
       text: req.body.text,
       complete: req.body.complete
-    }).then(function(dbTodo) {
+    }).then(function(charteddb) {
       // We have access to the new todo as an argument inside of the callback function
-      res.json(dbTodo);
+      res.json(charteddb);
     });
 
   });
@@ -44,8 +44,8 @@ module.exports = function(app) {
         id: req.params.id
       }
     })
-      .then(function(dbTodo) {
-        res.json(dbTodo);
+      .then(function(charteddb) {
+        res.json(charteddb);
       });
 
   });
