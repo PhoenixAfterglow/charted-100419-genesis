@@ -9,7 +9,7 @@ $(document).ready(function() {
     signUpForm.on("submit", function(event) {
         event.preventDefault();
         var userData = {
-            userName: userName.val().trim(),
+            username: userName.val().trim(),
             email: emailInput.val().trim(),
             password: passwordInput.val().trim()
         };
@@ -18,7 +18,7 @@ $(document).ready(function() {
             return;
         }
         // If we have an email and password, run the signUpUser function
-        signUpUser(userData.userName, userData.email, userData.password);
+        signUpUser(userData.username, userData.email, userData.password);
         userName.val("");
         emailInput.val("");
         passwordInput.val("");
@@ -28,7 +28,7 @@ $(document).ready(function() {
     // Otherwise we log any errors
     function signUpUser(userName, email, password) {
         $.post("/api/signup", {
-                userName: userName,
+                username: userName,
                 email: email,
                 password: password
             })
