@@ -1,101 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 ​
+
 <head>
-  <title>Passport Authentication</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <!-- <link href="stylesheets/style.css" rel="stylesheet"> -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <!-- chart.js cdn -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <title>Passport Authentication</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="stylesheets/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <!-- chart.js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 </head>
 ​
+
 <body>
-  <nav class="navbar navbar-transparent">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="./login.html">
+    <nav class="navbar navbar-transparent">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="./login.html">
         Logout
       </a>
-    </div>
-  </div>
-</nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome <span class="member-name"></span></h2>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- trying to see what graph area would look like -->
-
-  <div class="container">
-
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <p class="cool-font">Data 1</p>
-          <input class="form-control" type="text" id="author" placeholder="Enter Your Name">
-          <br>
-          <p class="cool-font">Data 2</p>
-          <textarea class="form-control" rows="3" id="data-box" placeholder="Enter Data Here!"></textarea>
-          <button id="data-submit" class="btn btn-lg pull-right">Submit!</button>
+            </div>
         </div>
-      </div>
-  
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <h2>Graph 1</h2>
-          <hr>
-          <!-- <div id="graph-area"></div> -->
-          
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Welcome <span class="member-name"></span></h2>
+            </div>
         </div>
-      </div>
-  
-      <div class="container" id="graphArea">
-        <canvas id="myChart"></canvas>
-      </div>
-      <script>
-        let myChart = document.getElementById("myChart").getContext("2d");
-  
-        let infoChart = new Chart(myChart, {
-          type: "line",
-          data: {
-            labels: ["May", "June", "July", "August", "September"],
-            datasets: [{
-              label: "Grass Fed Chickens Data",
-              labels: [
-                236,
-                400,
-                600,
-                700,
-              
-  
-              ]
-            }]
-          },
-          options: {}
-        });
-      </script>
-  
-  
     </div>
-  
-
-    
-<!-- end of test area -->
 
 
-​
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/members.js"></script>
-​
+
+    <!-- trying to see what graph area would look like -->
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <p class="cool-font">Data 1</p>
+                <input class="form-control" type="text" id="author" placeholder="Enter Your Name">
+                <br>
+                <p class="cool-font">Data 2</p>
+                <textarea class="form-control" rows="3" id="data-box" placeholder="Enter Data Here!"></textarea>
+                <button id="data-submit" class="btn btn-lg pull-right">Submit!</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h2>Graph 1</h2>
+                <hr>
+                <!-- <div id="graph-area"></div> -->
+
+            </div>
+        </div>
+
+        <div class="container" id="graphArea">
+            <canvas id="myChart"></canvas>
+        </div>
+        <script>
+            let myChart = document.getElementById("myChart").getContext("2d");
+
+            let infoChart = new Chart(myChart, {
+                type: "line",
+                data: {
+                    labels: ["May", "June", "July", "August", "September"],
+                    datasets: [{
+                        label: "Grass Fed Chickens Data",
+                        labels: [
+                            236,
+                            400,
+                            600,
+                            700,
+
+
+                        ]
+                    }]
+                },
+                options: {}
+            });
+        </script>
+
+
+    </div>
+
+
+
+    <!-- end of test area -->
+
+
+    ​
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/members.js"></script>
+    ​
 </body>
 ​
+
 </html>
-Shared in
-project2-javascripted
+Shared in project2-javascripted
