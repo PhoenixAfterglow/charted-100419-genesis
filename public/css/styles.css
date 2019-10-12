@@ -1,3 +1,28 @@
+.navbar-brand {
+  color: white;
+}
+
+
+#signUp {
+  background-image: url("https://images.unsplash.com/photo-1506519056028-d18449e82c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80");
+  
+  
+}
+
+#logIn {
+  background-image: url("https://images.unsplash.com/photo-1484759288640-783b22c95d54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+  padding-left: 500px;
+}
+
+
+body {
+  background-image: url("https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+  background-size: cover;
+  /* opacity: 0.2; */
+  
+}
+
+
 .chirp {
   padding: 10px;
   margin: 10px;
@@ -7,13 +32,14 @@
 .cool-font {
   font-family: Montserrat, sans-serif;
   font-size: 24px;
-  color: #1da1f2;
+  color:white;
 }
 
 .jumbotron {
   font-family: Montserrat, sans-serif;
   color: white;
-  background-color: #1da1f2;
+  background-color: slategrey;
+  opacity: 0.6;
 }
 
 input,
@@ -24,16 +50,26 @@ textarea {
 .btn {
   margin: 10px;
   font-family: Montserrat, sans-serif;
-  color: #1da1f2;
+  /* color: #1da1f2; */
+  color: slategrey;
   background-color: white;
-  border-color: #1da1f2;
+  border-color: white;
   border-style: solid;
   border-width: 2px;
+}
+
+h2 {
+  color: white;
 }
 
 p {
   margin: 0;
   font-size: 16px;
+}
+
+#graphArea {
+  background: white;
+  margin-bottom: 40px;
 }
 
 footer.pageFooter {
