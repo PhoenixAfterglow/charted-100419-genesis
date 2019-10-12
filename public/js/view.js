@@ -130,3 +130,18 @@ $(document).ready(function () {
     $newItemInput.val("");
   }
 });
+
+let chart = new Chart(ctx, {
+  type: 'line',
+  data: data,
+  options: {
+    layout: {
+      padding: {
+        left: 50,
+        right: 0,
+        top: 0,
+        bottom: 0
+      }
+    }
+  }
+});

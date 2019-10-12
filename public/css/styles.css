@@ -37,7 +37,6 @@ p {
 }
 
 footer.pageFooter {
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -47,4 +46,20 @@ footer.pageFooter {
   font-size: 8pt;
   text-align: center;
   background-color: #f8f9fa;
+}
+
+.chartjs-size-monitor, .chartjs-size-monitor-expand, .chartjs-size-monitor-shrink {
+  position: absolute;
+  direction: ltr;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.chartjs-render-monitor {
+  animation: chartjs-render-animation 1ms;
 }
