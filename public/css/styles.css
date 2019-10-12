@@ -1,5 +1,7 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+
 .navbar-brand {
-  color: white;
+  color: slategrey;
 }
 
 
@@ -9,9 +11,11 @@
   
 }
 
+
+
 #logIn {
   background-image: url("https://images.unsplash.com/photo-1484759288640-783b22c95d54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-  padding-left: 500px;
+  
 }
 
 
