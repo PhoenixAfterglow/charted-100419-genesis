@@ -86,16 +86,27 @@ $(document).ready(function() {
         const datas = await response.text();
         //console.log(datas);
         const table = datas.split('\n');
-        table.forEach(row => {
-            console.log(row);
 
+        table.forEach((row, index) => {
 
+            if (index === 0) {
+
+                const label = row.split(',').slice(1);
+
+                label.forEach(lab => {
+                    console.log("Label", lab);
+                })
+            }
 
             const columns = row.split(',');
 
-            //console.log(columns.length);
-            const colLength = columns.length;
+            for (let i = 1; i < columns.length; i++) {
 
+                console.log(columns[i]);
+            }
+
+
+            console.log("Columns", columns);
             // const ysValues = columns[index + 1];
             // ys.push(ysValues);
             // const _108_5mo = columns[1];

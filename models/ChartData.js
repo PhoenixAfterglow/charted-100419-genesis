@@ -6,22 +6,22 @@
 // Add a flag for complete so that it's false by default if not given a value
 
 module.exports = function(sequelize, DataTypes) {
-    const Chart = sequelize.define("Chart", {
-        chartName: {
+    const ChartData = sequelize.define("ChartData", {
+        ysValue: {
             type: DataTypes.STRING,
             allowNull: false
         }
     });
 
-    Chart.associate = function(models) {
+    ChartData.associate = function(models) {
         // We're saying that a Post should belong to an Author
         // A Post can't be created without an Author due to the foreign key constraint
-        Chart.belongsTo(models.User, {
+        ChartData.belongsTo(models.ChartXs, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
 
-    return Chart;
+    return ChartData;
 };
