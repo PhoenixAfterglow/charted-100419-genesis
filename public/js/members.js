@@ -9,55 +9,41 @@ $(document).ready(function() {
     ---------------------- */
 
     async function setup() {
+        const dSetArr = [];
+        const backgroundColor = ['rgba(255, 99, 132, 0.2)', 'rgba(167,105,0,0.4)', 'rgba(220,220,220,0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'];
+        const borderColor = ['rgba(255, 99, 132, 1)', 'rgb(167, 105, 0)', 'rgba(220,220,220,1)', 'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'];
         const chickenDatas = await getDatas();
+
+        async function chartDataSet(chickenDatas) {
+
+            console.log("chicken Datas", chickenDatas.chartLabel.label);
+
+            const chartL = chickenDatas.chartLabel.label;
+            chartL.forEach((dataSet, index) => {
+
+                console.log(dataSet, index);
+                const dSet = {
+                    label: dataSet,
+                    data: chickenDatas.chartDatas.xsValue,
+                    fill: false,
+                    backgroundColor: backgroundColor[index],
+                    borderColor: borderColor[index],
+                    borderWidth: 1
+                };
+                dSetArr.push(dSet);
+            });
+            console.log(dSetArr);
+            return dSetArr;
+        };
+
+
+        console.log(chickenDatas);
         const ctx = document.getElementById('chart').getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: chickenDatas.lab,
-                datasets: [{
-                    label: '108 5mo',
-                    data: chickenDatas.ys108,
-                    fill: false,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }, {
-                    label: '97 5mo',
-                    data: chickenDatas.ys97,
-                    fill: false,
-                    backgroundColor: 'rgba(167,105,0,0.4)',
-                    borderColor: 'rgb(167, 105, 0)',
-                    borderWidth: 1
-                }, {
-                    label: '120 6mo',
-                    data: chickenDatas.ys120,
-                    fill: false,
-                    backgroundColor: 'rgba(220,220,220,0.2)',
-                    borderColor: 'rgba(220,220,220,1)',
-                    borderWidth: 1
-                }, {
-                    label: '111 6mo',
-                    data: chickenDatas.ys111,
-                    fill: false,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }, {
-                    label: '20 7mo',
-                    data: chickenDatas.ys20,
-                    fill: false,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }, {
-                    label: '15 7mo',
-                    data: chickenDatas.ys15,
-                    fill: false,
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    borderWidth: 1
-                }]
+                labels: chickenDatas.chartXs.xs.slice(1),
+                datasets: await chartDataSet(chickenDatas)
             },
             options: {
                 scales: {
@@ -74,19 +60,27 @@ $(document).ready(function() {
     -----------------------  */
 
     async function getDatas() {
-        const xs = [];
-        const ys = [];
-        const ys108 = [];
-        const ys97 = [];
-        const ys120 = [];
-        const ys111 = [];
-        const ys20 = [];
-        const ys15 = [];
+        const chartName = "Chicken Grass";
+        const chartID = 1;
+        const chartUserID = 1;
+        const chartLabel = {
+            label: [],
+            chartID: []
+        };
+        const chartXs = {
+            xs: [],
+            chartID: []
+        };
+        const chartDatas = {
+            xsValue: [],
+            chartLabelID: [],
+            chartXsID: []
+        };
         const response = await fetch('../datas/Grass_Fed_Chickens_grass.csv');
         const datas = await response.text();
         //console.log(datas);
         const table = datas.split('\n');
-
+        //console.log("Table", table);
         table.forEach((row, index) => {
 
             if (index === 0) {
@@ -94,19 +88,31 @@ $(document).ready(function() {
                 const label = row.split(',').slice(1);
 
                 label.forEach(lab => {
-                    console.log("Label", lab);
+                    chartLabel.label.push(lab);
+                    chartLabel.chartID.push(chartID);
                 })
+            } else {
+                const chartLabelID = 1;
+                const chartXsID = 1;
+                const columns = row.split(',');
+                const chartXsData = columns[1];
+
+                chartDatas.xsValue.push(chartXsData);
+                chartDatas.chartLabelID.push(chartLabelID);
+                chartDatas.chartXsID.push(chartXsID);
             }
 
             const columns = row.split(',');
 
-            for (let i = 1; i < columns.length; i++) {
+            const xs = columns[0];
 
-                console.log(columns[i]);
-            }
+            chartXs.xs.push(xs);
+            chartXs.chartID.push(chartID);
 
+            // console.log("ChartXs ", chartXs);
+            // console.log("Chart Label", chartLabel);
+            // console.log("Chart Datas", chartDatas);
 
-            console.log("Columns", columns);
             // const ysValues = columns[index + 1];
             // ys.push(ysValues);
             // const _108_5mo = columns[1];
@@ -126,8 +132,9 @@ $(document).ready(function() {
             //console.log(xs);
             // console.log(ys);
         });
-        const lab = xs.slice(1);
-        return { lab };
+        //const lab = chartXs.slice(1);
+        //console.log("ChartXs", lab);
+        return { chartLabel, chartXs, chartDatas };
         //return { xs, ys108, ys97, ys120, ys111, ys20, ys15 };
     }
 

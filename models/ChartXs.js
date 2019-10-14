@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
 
     ChartXs.associate = function(models) {
 
-        ChartXs.belongsTo(models.ChartLabel, {
+        ChartXs.belongsTo(models.Chart, {
             foreignKey: {
                 allowNull: false
             }
