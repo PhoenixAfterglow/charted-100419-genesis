@@ -16,15 +16,15 @@ $(document).ready(function() {
 
         async function chartDataSet(chickenDatas) {
 
-            console.log("chicken Datas", chickenDatas.chartLabel.label);
+            // console.log("chicken Datas", chickenDatas.chartLabel.label);
 
             const chartL = chickenDatas.chartLabel.label;
             chartL.forEach((dataSet, index) => {
 
-                console.log(dataSet, index);
+                //console.log(dataSet, index);
                 const dSet = {
                     label: dataSet,
-                    data: chickenDatas.chartDatas.xsValue,
+                    data: chickenDatas.chartDatas.xsValue[index],
                     fill: false,
                     backgroundColor: backgroundColor[index],
                     borderColor: borderColor[index],
@@ -32,7 +32,7 @@ $(document).ready(function() {
                 };
                 dSetArr.push(dSet);
             });
-            console.log(dSetArr);
+            //console.log(dSetArr);
             return dSetArr;
         };
 
@@ -80,7 +80,7 @@ $(document).ready(function() {
         const datas = await response.text();
         //console.log(datas);
         const table = datas.split('\n');
-        //console.log("Table", table);
+        console.log("Table", table);
         table.forEach((row, index) => {
 
             if (index === 0) {
@@ -94,9 +94,9 @@ $(document).ready(function() {
             } else {
                 const chartLabelID = 1;
                 const chartXsID = 1;
-                const columns = row.split(',');
-                const chartXsData = columns[1];
-
+                // const columns = row[index];
+                const chartXsData = table[index].split(",").slice(1);
+                console.log("chartXData", chartXsData);
                 chartDatas.xsValue.push(chartXsData);
                 chartDatas.chartLabelID.push(chartLabelID);
                 chartDatas.chartXsID.push(chartXsID);
@@ -111,7 +111,7 @@ $(document).ready(function() {
 
             // console.log("ChartXs ", chartXs);
             // console.log("Chart Label", chartLabel);
-            // console.log("Chart Datas", chartDatas);
+            console.log("Chart Datas", chartDatas);
 
             // const ysValues = columns[index + 1];
             // ys.push(ysValues);
