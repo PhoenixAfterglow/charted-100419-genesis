@@ -47,16 +47,17 @@ textarea {
     margin: 20px;
 }
 
-.btn {
+
+/* .btn {
     margin: 10px;
     font-family: Montserrat, sans-serif;
-    /* color: #1da1f2; */
+    /* color: #1da1f2; 
     color: slategrey;
     background-color: white;
     border-color: white;
     border-style: solid;
     border-width: 2px;
-}
+} */
 
 h2 {
     color: white;

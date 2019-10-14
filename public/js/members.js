@@ -14,7 +14,7 @@ $(document).ready(function() {
         const myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: chickenDatas.xs,
+                labels: chickenDatas.lab,
                 datasets: [{
                     label: '108 5mo',
                     data: chickenDatas.ys108,
@@ -75,6 +75,7 @@ $(document).ready(function() {
 
     async function getDatas() {
         const xs = [];
+        const ys = [];
         const ys108 = [];
         const ys97 = [];
         const ys120 = [];
@@ -83,27 +84,51 @@ $(document).ready(function() {
         const ys15 = [];
         const response = await fetch('../datas/Grass_Fed_Chickens_grass.csv');
         const datas = await response.text();
-        console.log(datas);
-        const table = datas.split('\n').slice(1);
-        table.forEach(row => {
+        //console.log(datas);
+        const table = datas.split('\n');
+
+        table.forEach((row, index) => {
+
+            if (index === 0) {
+
+                const label = row.split(',').slice(1);
+
+                label.forEach(lab => {
+                    console.log("Label", lab);
+                })
+            }
+
             const columns = row.split(',');
-            const months = columns[0];
-            xs.push(months);
-            const _108_5mo = columns[1];
-            ys108.push(_108_5mo);
-            const _97_5mo = columns[2];
-            ys97.push(_97_5mo);
-            const _120_6mo = columns[3];
-            ys120.push(_120_6mo);
-            const _111_6mo = columns[4];
-            ys111.push(_111_6mo);
-            const _20_7mo = columns[5];
-            ys20.push(_20_7mo);
-            const _15_7mo = columns[6];
-            ys15.push(_15_7mo);
-            console.log(months, _108_5mo, _97_5mo, _120_6mo, _111_6mo, _20_7mo, _15_7mo);
+
+            for (let i = 1; i < columns.length; i++) {
+
+                console.log(columns[i]);
+            }
+
+
+            console.log("Columns", columns);
+            // const ysValues = columns[index + 1];
+            // ys.push(ysValues);
+            // const _108_5mo = columns[1];
+            // ys108.push(_108_5mo);
+            // const _97_5mo = columns[2];
+            // ys97.push(_97_5mo);
+            // const _120_6mo = columns[3];
+            // ys120.push(_120_6mo);
+            // const _111_6mo = columns[4];
+            // ys111.push(_111_6mo);
+            // const _20_7mo = columns[5];
+            // ys20.push(_20_7mo);
+            // const _15_7mo = columns[6];
+            // ys15.push(_15_7mo);
+            // console.log(months, _108_5mo, _97_5mo, _120_6mo, _111_6mo, _20_7mo, _15_7mo);
+            //console.log(columns[1]);
+            //console.log(xs);
+            // console.log(ys);
         });
-        return { xs, ys108, ys97, ys120, ys111, ys20, ys15 };
+        const lab = xs.slice(1);
+        return { lab };
+        //return { xs, ys108, ys97, ys120, ys111, ys20, ys15 };
     }
 
     setup();

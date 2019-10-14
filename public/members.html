@@ -17,9 +17,7 @@
     <nav class="navbar navbar-transparent">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="./login.html">
-        Logout
-      </a>
+                <a class="navbar-brand" href="./logout"> Logout </a>
             </div>
         </div>
     </nav>
@@ -36,53 +34,21 @@
     <!-- trying to see what graph area would look like -->
 
     <div class="container">
-
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <p class="cool-font">Data 1</p>
-                <input class="form-control" type="text" id="author" placeholder="Enter Your Name">
-                <br>
-                <p class="cool-font">Data 2</p>
-                <textarea class="form-control" rows="3" id="data-box" placeholder="Enter Data Here!"></textarea>
-                <button id="data-submit" class="btn btn-lg pull-right">Submit!</button>
+        <form action="/members" method="post" enctype="multipart/form-data">
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon04" name="uploadCsvDatas">
+                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Upload</button>
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <h2>Graph 1</h2>
-                <hr>
-                <!-- <div id="graph-area"></div> -->
-
-            </div>
-        </div>
+        </form>
 
         <div class="container" id="graphArea">
-            <canvas id="myChart"></canvas>
+            <canvas id="chart"></canvas>
         </div>
-        <script>
-            let myChart = document.getElementById("myChart").getContext("2d");
-
-            let infoChart = new Chart(myChart, {
-                type: "line",
-                data: {
-                    labels: ["May", "June", "July", "August", "September"],
-                    datasets: [{
-                        label: "Grass Fed Chickens Data",
-                        labels: [
-                            236,
-                            400,
-                            600,
-                            700,
-
-
-                        ]
-                    }]
-                },
-                options: {}
-            });
-        </script>
-
 
     </div>
 
@@ -96,7 +62,5 @@
     <script type="text/javascript" src="js/members.js"></script>
     ​
 </body>
-​
 
 </html>
-Shared in project2-javascripted
