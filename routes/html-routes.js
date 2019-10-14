@@ -3,6 +3,7 @@ const path = require("path");
 const multer = require("multer");
 const upload = multer({ dest: 'public/datas/' });
 const fs = require("fs");
+const oFunc = require('../functions/functions.js');
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -54,8 +55,9 @@ module.exports = function(app) {
 
                     console.log(datas);
 
+                    const datasToSaveDB = oFunc.parseDatas(datas);
 
-
+                    console.log("Datas To be Save", datasToSaveDB.chartDatas.xsValue[0]);
 
                 });
 
