@@ -74,19 +74,26 @@ $(document).ready(function() {
     -----------------------  */
 
     async function getDatas() {
-        const xs = [];
-        const ys = [];
-        const ys108 = [];
-        const ys97 = [];
-        const ys120 = [];
-        const ys111 = [];
-        const ys20 = [];
-        const ys15 = [];
+        const chartName = "Chicken Grass";
+        const chartID = 1;
+        const chartUserID = 1;
+        const chartLabel = {
+            label: [],
+            chartID: []
+        };
+        const chartXs = {
+            xs: [],
+            chartID: []
+        };
+        const chartDatas = {
+            xsValue: [],
+            chartXsID: []
+        };
         const response = await fetch('../datas/Grass_Fed_Chickens_grass.csv');
         const datas = await response.text();
         //console.log(datas);
         const table = datas.split('\n');
-
+        console.log("Table", table);
         table.forEach((row, index) => {
 
             if (index === 0) {
@@ -94,19 +101,21 @@ $(document).ready(function() {
                 const label = row.split(',').slice(1);
 
                 label.forEach(lab => {
-                    console.log("Label", lab);
+                    chartLabel.label.push(lab);
+                    chartLabel.chartID.push(chartID);
                 })
             }
 
             const columns = row.split(',');
 
-            for (let i = 1; i < columns.length; i++) {
+            const xs = columns[0];
 
-                console.log(columns[i]);
-            }
+            chartXs.xs.push(xs);
+            chartXs.chartID.push(chartID);
 
+            console.log("ChartXs ", chartXs);
+            console.log("Chart Label", chartLabel);
 
-            console.log("Columns", columns);
             // const ysValues = columns[index + 1];
             // ys.push(ysValues);
             // const _108_5mo = columns[1];
@@ -126,8 +135,9 @@ $(document).ready(function() {
             //console.log(xs);
             // console.log(ys);
         });
-        const lab = xs.slice(1);
-        return { lab };
+        //const lab = chartXs.slice(1);
+        //console.log("ChartXs", lab);
+        return { chartXs };
         //return { xs, ys108, ys97, ys120, ys111, ys20, ys15 };
     }
 
