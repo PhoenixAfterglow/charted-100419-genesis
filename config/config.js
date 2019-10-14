@@ -17,12 +17,15 @@ config = {
         "dialect": "mysql"
     },
     "production": {
-        "username": "root",
-        "password": null,
-        "database": "database_production",
-        "host": "127.0.0.1",
-        "dialect": "mysql"
+        "username": process.env.DB_USERNAMEP,
+        "password": process.env.DB_PASSWORDP,
+        "database": process.env.DB_NAMEP,
+        "host": process.env.DB_HOSTNAMEP,
+        "dialect": "mysql",
+        "operatorsAliases": false
     }
 }
+
+
 
 module.exports = config;
