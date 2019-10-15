@@ -6,61 +6,90 @@
     <title>Passport Authentication</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href="stylesheets/style.css" rel="stylesheet"> -->
-    <link rel="stylesheet" type="text/css" href="./css/styles.css">
-    <!-- chart.js cdn -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 ​
 
 <body>
-    <nav class="navbar navbar-transparent">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="./logout"> Logout </a>
-            </div>
-        </div>
-    </nav>
+
+
     <div class="container">
+
+        <ul class="nav justify-content-end">
+
+            <li class="nav-item">
+                <a class="nav-link" href="./login.html">Sign Out</a>
+            </li>
+        </ul>
+
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <h2>Welcome <span class="member-name"></span></h2>
+            <div class="col-3">
+                <img src="images/charted_V2.png" alt="logo" style="width:275px">
             </div>
-        </div>
-    </div>
+            <div class="col-1"></div>
+            <div class="col-6">
+
+                <br>
+
+                <h2>Upload Your Data</h2>
+                <form class="signup">
+                    <br>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email-input" placeholder="New Chart Name">
+                    </div>
+                    <br>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+
+                    <br>
+                    <br>
 
 
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2">
 
-    <!-- trying to see what graph area would look like -->
-
-    <div class="container">
-        <form action="/members" method="post" enctype="multipart/form-data">
-            <div class="input-group">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon04" name="uploadCsvDatas">
-                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                </div>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Upload</button>
-                </div>
+                            <h2>Graph 1</h2>
+                            <hr>
+                            <!-- <div id="graph-area"></div> -->
+                        </div>
+                    </div>
+                    <div class="container" id="graphArea">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <script>
+                        let myChart = document.getElementById("myChart").getContext("2d");
+                        let infoChart = new Chart(myChart, {
+                            type: "line",
+                            data: {
+                                labels: ["May", "June", "July", "August", "September"],
+                                datasets: [{
+                                    label: "Grass Fed Chickens Data",
+                                    labels: [
+                                        236,
+                                        400,
+                                        600,
+                                        700,
+                                    ]
+                                }]
+                            },
+                            options: {}
+                        });
+                    </script>
             </div>
-        </form>
-
-        <div class="container" id="graphArea">
-            <canvas id="chart"></canvas>
-        </div>
-
-    </div>
-
-
-
-    <!-- end of test area -->
-
-
-    ​
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/members.js"></script>
-    ​
+            <!-- end of test area -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script type="text/javascript" src="js/members.js"></script>
 </body>
 
 </html>

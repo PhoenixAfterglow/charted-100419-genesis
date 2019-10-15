@@ -1,45 +1,33 @@
-
+/* IMPORTS
+=========================== */
 
 @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
 
+/*
+============================== */
 
-.navbar-brand {
-    color: slategrey;
+div.container {
+    margin-top: 0px;
+    margin-left: 10px;
+
 }
 
-#signUp {
-    background-image: url("https://images.unsplash.com/photo-1506519056028-d18449e82c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80");
-}
-
-
-
-#logIn {
-    background-image: url("https://images.unsplash.com/photo-1484759288640-783b22c95d54?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-}
-
-body {
-    background-image: url("https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-    background-size: cover;
-    /* opacity: 0.2; */
-}
-
-.chirp {
+.data {
     padding: 10px;
     margin: 10px;
     background-color: #e8f9ff;
 }
 
 .cool-font {
-    font-family: Montserrat, sans-serif;
-    font-size: 24px;
-    color: white;
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  color: #1da1f2;
 }
 
 .jumbotron {
-    font-family: Montserrat, sans-serif;
-    color: white;
-    background-color: slategrey;
-    opacity: 0.6;
+  font-family: Montserrat, sans-serif;
+  color: white;
+  background-color: #1da1f2;
 }
 
 input,
@@ -47,41 +35,58 @@ textarea {
     margin: 20px;
 }
 
-
-/* .btn {
-    margin: 10px;
-    font-family: Montserrat, sans-serif;
-    /* color: #1da1f2; 
-    color: slategrey;
-    background-color: white;
-    border-color: white;
-    border-style: solid;
-    border-width: 2px;
-} */
+.btn {
+  margin-left: 0px;
+  font-family: Montserrat, sans-serif;
+  color: #ffff;
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+  border-style: solid;
+  border-width: 2px;
+}
 
 h2 {
-    color: white;
+  color: #ffff;
+}
+
+a {
+  color: #ffff;
+}
+
+a:hover {
+  color: #ffff;
+  font-weight: bold;
 }
 
 p {
     margin: 0;
     font-size: 16px;
+    color: #ffff;
 }
 
-#graphArea {
-    background: white;
-    margin-bottom: 40px;
+label {
+  color: #acb1b5;
 }
 
-footer.pageFooter {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    padding-top: 10px;
-    font-style: regular;
-    font-size: 8pt;
-    text-align: center;
-    background-color: #f8f9fa;
+body {
+    background-color: #364350;
 }
+
+input#userName-input.form-control {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+input#email-input.form-control {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+input#password-input.form-control {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
