@@ -3,6 +3,10 @@ module.exports = function(sequelize, DataTypes) {
         label: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        order: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     });
 

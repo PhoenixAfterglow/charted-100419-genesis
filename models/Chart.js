@@ -10,6 +10,10 @@ module.exports = function(sequelize, DataTypes) {
         chartName: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        order: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     });
 

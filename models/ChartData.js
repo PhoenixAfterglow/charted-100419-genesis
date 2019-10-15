@@ -10,6 +10,10 @@ module.exports = function(sequelize, DataTypes) {
         xsValue: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        order: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     });
 

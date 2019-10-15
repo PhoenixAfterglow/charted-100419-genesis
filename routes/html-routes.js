@@ -57,9 +57,11 @@ module.exports = function(app) {
 
                     const datasToSaveDB = oFunc.parseDatas(datas);
 
-                    console.log("Datas To be Save", datasToSaveDB.chartDatas.xsValue[0]);
+                    //console.log("Datas To be Save", datasToSaveDB);
 
                 });
+
+
 
             return resolve()
         }).catch(console.log);
