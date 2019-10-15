@@ -1,7 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
     const ChartXs = sequelize.define("ChartXs", {
-        label: {
+        xsName: {
             type: DataTypes.STRING,
+            allowNull: false
+        },
+        order: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     });
