@@ -1,74 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-​
 
 <head>
-  <title>Passport Authentication</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <title>Charted - Signup</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-​
 
 <body>
-
-
-  <div class="container">
-
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link" href="./login.html">Login</a>
-      </li>
-    </ul>
-
-    <div class="row">
-      <div class="col-3">
-        <img src="images/charted_V2.png" alt="logo" style="width:275px">
-      </div>
-      <div class="col-1"></div>
-      <div class="col-6">
-
-        <br>
-        <h2 class="mainText">Compare your data, with Charted.</h2>
-        <p>Simply upload your .CSV files & draw your
-          correlation between data sets.</p>
-        <br>
-        <br>
-
-        <h2>Sign Up Form</h2>
-        <form class="signup">
-          <br>
-
-          <div class="form-group">
-            <label for="exampleInputUserName">Full Name</label>
-            <input type="text" class="form-control" id="userName-input" placeholder="Full Name">
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email-input" placeholder="Email">
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password-input" placeholder="Password">
-          </div>
-
-          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div>
-          <button type="submit" class="btn btn-default"><a href="./members.html">Sign Up</a></button>
-        </form>
-        <br />
-        <p>Or log in <a href="./login.html">here</a></p>
-      </div>
-
-
-
-      <script type="text/javascript" src="js/signup.js"></script>
+    <div class="container">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Login</a>
+            </li>
+        </ul>
+    </div>
+    ​
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                <img src="images/charted_V2.png" alt="logo" style="width:230px">
+            </div>
+            <div class="col-sm-7">
+                <br>
+                <h2 class="mainText">Charted lets you compare your data.</h2>
+                <p>Simply upload your .CSV files & draw your correlation between data sets.</p>
+                <br>
+                <br>
+                <h2>Sign Up Form</h2>
+                <form class="signup">
+                    <br>
+                    <div class="form-group">
+                        <label for="exampleInputUserName">Full Name</label>
+                        <input type="text" class="form-control" id="userName-input" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="email-input" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="password-input" placeholder="Password" autocomplete="off">
+                    </div>
+                    <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span> <span class="msg"></span>
+                    </div>
+                    <button type="submit" class="btn btn-default">Sign Up</button>
+                </form>
+                <br />
+                <p>Or log in <a href="/">here</a></p>
+            </div>
+        </div>
+    </div>
+    ​
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/signup.js"></script>
 </body>
-
 
 </html>

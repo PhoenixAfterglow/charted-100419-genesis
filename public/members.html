@@ -1,95 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-​
 
 <head>
-    <title>Passport Authentication</title>
+    <title>Charted - Member Dashboard</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
-​
 
 <body>
-
-
     <div class="container">
-
         <ul class="nav justify-content-end">
-
             <li class="nav-item">
-                <a class="nav-link" href="./login.html">Sign Out</a>
+                <a class="nav-link" href="./logout">Sign Out</a>
             </li>
         </ul>
-
+    </div>
+    ​
+    <div class="container">
         <div class="row">
-            <div class="col-3">
-                <img src="images/charted_V2.png" alt="logo" style="width:275px">
+            <div class="col-sm-5">
+                <img src="images/charted_V2.png" alt="logo" style="width:230px">
             </div>
-            <div class="col-1"></div>
-            <div class="col-6">
 
+            <div class="col-sm-7">
                 <br>
-
                 <h2>Upload Your Data</h2>
-                <form class="signup">
-                    <br>
-
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="email-input" placeholder="New Chart Name">
-                    </div>
-                    <br>
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                        </div>
+                <br>
+                <br>
+                <form action="/members" method="post" enctype="multipart/form-data" class="mt-6">
+                    <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                aria-describedby="inputGroupFileAddon01">
-                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon04" name="uploadCsvDatas">
+                            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit" id="btnUpload">Upload</button>
                         </div>
                     </div>
-
-                    <br>
-                    <br>
-
-
-                    <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2">
-
-                            <h2>Graph 1</h2>
-                            <hr>
-                            <!-- <div id="graph-area"></div> -->
-                        </div>
-                    </div>
-                    <div class="container" id="graphArea">
-                        <canvas id="myChart"></canvas>
-                    </div>
-                    <script>
-                        let myChart = document.getElementById("myChart").getContext("2d");
-                        let infoChart = new Chart(myChart, {
-                            type: "line",
-                            data: {
-                                labels: ["May", "June", "July", "August", "September"],
-                                datasets: [{
-                                    label: "Grass Fed Chickens Data",
-                                    labels: [
-                                        236,
-                                        400,
-                                        600,
-                                        700,
-                                    ]
-                                }]
-                            },
-                            options: {}
-                        });
-                    </script>
+                </form>
+                <br>
+                <br>
+                <div class="container" id="graphArea">
+                    <canvas id="chart"></canvas>
+                </div>
             </div>
             <!-- end of test area -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script type="text/javascript" src="js/members.js"></script>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/members.js"></script>
 </body>
 
 </html>
