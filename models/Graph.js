@@ -1,16 +1,10 @@
-
-
 module.exports = function(sequelize, DataTypes) {
     const Graph = sequelize.define("Graph", {
-        graphName: {
+        graphLabel: {
             type: DataTypes.STRING,
             allowNull: false
         },
         xName: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        yName: {
             type: DataTypes.STRING,
             allowNull: false
         }
@@ -27,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
         Graph.hasMany(models.DataXYPair, {
             foreignKey: {
                 allowNull: false
-            } 
+            }
         })
     };
 

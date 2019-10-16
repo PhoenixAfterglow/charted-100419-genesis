@@ -41,12 +41,16 @@ module.exports = function(app) {
             // The user is not logged in, send back an empty object
             res.json({});
         } else {
-            // Otherwise send back the user's email and id
-            // Sending back a password, even a hashed password, isn't a good idea
-            res.json({
-                userName: req.user.useNname,
-                email: req.user.email,
-                id: req.user.id
+            db.User.findOne({
+                where: {
+                    id: req.user.id
+                }
+            }).then(function(datas) {
+                res.json({
+                    username: datas.dataValues.username,
+                    email: datas.dataValues.email,
+                    id: datas.dataValues.id
+                });
             });
         }
     });

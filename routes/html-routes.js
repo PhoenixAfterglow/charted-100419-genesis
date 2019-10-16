@@ -45,33 +45,48 @@ module.exports = function(app) {
     /* POST saveblog router. */
     app.post('/members', isAuthenticated, upload.single('uploadCsvDatas'), function(req, res, next) {
 
-        console.log(req.file.filename);
         const uploadedFile = req.file.filename;
 
         new Promise((resolve, reject) => {
 
-            const results = [];
+            let results = [];
             fs.createReadStream(`public/datas/${uploadedFile}`)
                 .pipe(csv())
-                .on('data', (data) => results.push(data))
+                .on('data', (data) => { results.push(data); })
                 .on('end', () => {
-                    console.log(results);
-                    const datasToSaveDB = oFunc.parseDatas(results);
+
+                    db.ChartCollection.create({
+                        chartName: "chicken Grass Consumption",
+                        UserId: req.user.id
+                    }).then(function(dbChart) {
+
+                        results.forEach((graph, index) => {
+
+                            const graphkeys = Object.keys(graph);
+
+                            db.Graph.create({
+                                graphLabel: graph[graphkeys[0]], //braquet notation
+                                xName: graphkeys[0],
+                                ChartCollectionId: dbChart.id
+
+                            }).then(dbGraph => {
+
+                                graphkeys.forEach((key, index) => {
+
+                                    if (index > 0) {
+
+                                        db.DataXYPair.create({
+                                            xValue: graphkeys[index],
+                                            yValue: graph[graphkeys[index]],
+                                            GraphId: dbGraph.id
+                                        })
+                                    }
+                                });
+                            });
+                        });
+                    });
 
                 });
-
-            // fs.readFile(`public/datas/${uploadedFile}`, 'utf8',
-            //     function(err, datas) {
-            //         if (err) reject(err);
-
-            //         console.log(datas);
-
-            //         const datasToSaveDB = oFunc.parseDatas(datas);
-
-            //         //console.log("Datas To be Save", datasToSaveDB);
-
-            //     });
-
 
 
             return resolve()
