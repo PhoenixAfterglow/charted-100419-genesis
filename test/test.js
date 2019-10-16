@@ -1,11 +1,20 @@
 const csv = require('csv-parser')
 const fs = require('fs')
+var db = require("../models");
 const results = [];
-require('console.table');
+// require('console.table');
  
-fs.createReadStream('daffy.csv')
+fs.createReadStream('daffy2.csv')
   .pipe(csv())
-  .on('data', (data) => results.push(data))
+  .on('data', (data) => {
+    // Create a ChartCollection.
+    // Loop through the data.
+    // Each object will be a Graph object, therefore,
+    // Create a Graph.
+    // Loop through the object forEach value after 0 index, therefore,
+    // Create new DataXYPair.
+    console.log(data);
+  })
   .on('end', () => {
     console.log(results);
     
