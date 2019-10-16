@@ -13,7 +13,7 @@
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
-        "csv-parse": "^4.6.3",
+        "csv-parser": "^2.3.1",
         "dotenv": "^8.1.0",
         "dotenv-json": "^1.0.0",
         "express": "^4.17.1",
