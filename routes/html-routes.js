@@ -4,6 +4,7 @@ const multer = require("multer");
 const upload = multer({ dest: 'public/datas/' });
 const fs = require("fs");
 const oFunc = require('../functions/functions.js');
+const csv = require('csv-parser');
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -49,17 +50,27 @@ module.exports = function(app) {
 
         new Promise((resolve, reject) => {
 
-            fs.readFile(`public/datas/${uploadedFile}`, 'utf8',
-                function(err, datas) {
-                    if (err) reject(err);
-
-                    console.log(datas);
-
-                    const datasToSaveDB = oFunc.parseDatas(datas);
-
-                    //console.log("Datas To be Save", datasToSaveDB);
+            const results = [];
+            fs.createReadStream(`public/datas/${uploadedFile}`)
+                .pipe(csv())
+                .on('data', (data) => results.push(data))
+                .on('end', () => {
+                    console.log(results);
+                    const datasToSaveDB = oFunc.parseDatas(results);
 
                 });
+
+            // fs.readFile(`public/datas/${uploadedFile}`, 'utf8',
+            //     function(err, datas) {
+            //         if (err) reject(err);
+
+            //         console.log(datas);
+
+            //         const datasToSaveDB = oFunc.parseDatas(datas);
+
+            //         //console.log("Datas To be Save", datasToSaveDB);
+
+            //     });
 
 
 
