@@ -70,11 +70,17 @@ function parseDatas(datasToProcess) {
         "xsValue": []
     };
 
-    console.log("datas TO be Process", datasToProcess);
+    //console.log("datas TO be Process", datasToProcess);
 
-    const test = datasToProcess.map(elem => elem);
+    // const test = datasToProcess.map(elem => elem.month);
 
-    console.log(test);
+    // const datas = datasToProcess.map((elem, index) => elem);
+    // datasToProcess.forEach(elem => {
+
+    //     console.log(elem[0]);
+    // });
+
+
     // const response = await fetch(datasToProces);
     // const datas = await response.text();
     //console.log(datas);
