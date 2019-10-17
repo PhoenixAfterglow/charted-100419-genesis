@@ -77,7 +77,7 @@ function parseDatas(datasToProcess, req) {
     db.ChartCollection.create({
         chartName: req.body.chartName,
         UserId: req.user.id
-    }).then(function(dbChart) {
+    }).then(dbChart => {
 
         datasToProcess.forEach((graph, index) => {
 
