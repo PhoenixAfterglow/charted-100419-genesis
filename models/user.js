@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
   User.associate = function(models) {
     // Associating User with Chart
     // When an User is deleted, also delete any associated Charts
-    User.hasMany(models.Chart, {
+    User.hasMany(models.ChartCollection, {
       onDelete: "cascade"
     });
   };
