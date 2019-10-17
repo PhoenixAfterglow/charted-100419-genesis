@@ -5,6 +5,7 @@ const upload = multer({ dest: 'public/datas/' });
 const fs = require("fs");
 const oFunc = require('../functions/functions.js');
 const csv = require('csv-parser');
+const db = require('../models');
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -38,6 +39,13 @@ module.exports = function(app) {
     // Here we've add our isAuthenticated middleware to this route.
     // If a user who is not logged in tries to access this route they will be redirected to the signup page
     app.get("/members", isAuthenticated, function(req, res) {
+
+        db.GraphCollection.findAll({}).then(gCollection => {
+
+            console.log(gCollection);
+            //res.json(dbTodo);
+        });
+
         res.sendFile(path.join(__dirname, "../public/members.html"));
 
     });
@@ -55,36 +63,7 @@ module.exports = function(app) {
                 .on('data', (data) => { results.push(data); })
                 .on('end', () => {
 
-                    db.ChartCollection.create({
-                        chartName: "chicken Grass Consumption",
-                        UserId: req.user.id
-                    }).then(function(dbChart) {
-
-                        results.forEach((graph, index) => {
-
-                            const graphkeys = Object.keys(graph);
-
-                            db.Graph.create({
-                                graphLabel: graph[graphkeys[0]], //braquet notation
-                                xName: graphkeys[0],
-                                ChartCollectionId: dbChart.id
-
-                            }).then(dbGraph => {
-
-                                graphkeys.forEach((key, index) => {
-
-                                    if (index > 0) {
-
-                                        db.DataXYPair.create({
-                                            xValue: graphkeys[index],
-                                            yValue: graph[graphkeys[index]],
-                                            GraphId: dbGraph.id
-                                        })
-                                    }
-                                });
-                            });
-                        });
-                    });
+                    oFunc.parseDatas(results, req);
 
                 });
 

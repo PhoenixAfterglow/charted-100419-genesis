@@ -1,3 +1,5 @@
+const db = require("../models");
+
 /* CHART DISPLAY
 ---------------------- */
 
@@ -55,20 +57,54 @@ function displayGraphDatas(datasP) {
 /* PARSING GRAPH DATA FROM CSV
 ------------------------------ */
 
-function parseDatas(datasToProcess) {
+function parseDatas(datasToProcess, req) {
 
-    const chartName = "Chicken Grass";
-    const chartID = 1;
-    const chartUserID = 1;
-    const chartLabel = {
-        "label": []
-    };
-    const chartXs = {
-        "xs": []
-    };
-    const chartDatas = {
-        "xsValue": []
-    };
+    // const chartName = "Chicken Grass";
+    // const chartID = 1;
+    // const chartUserID = 1;
+    // const chartLabel = {
+    //     "label": []
+    // };
+    // const chartXs = {
+    //     "xs": []
+    // };
+    // const chartDatas = {
+    //     "xsValue": []
+    // };
+
+
+
+    db.ChartCollection.create({
+        chartName: req.body.chartName,
+        UserId: req.user.id
+    }).then(function(dbChart) {
+
+        datasToProcess.forEach((graph, index) => {
+
+            const graphkeys = Object.keys(graph);
+
+            db.Graph.create({
+                graphLabel: graph[graphkeys[0]], //braquet notation
+                xName: graphkeys[0],
+                ChartCollectionId: dbChart.id
+
+            }).then(dbGraph => {
+
+                graphkeys.forEach((key, index) => {
+
+                    if (index > 0) {
+
+                        db.DataXYPair.create({
+                            xValue: graphkeys[index],
+                            yValue: graph[graphkeys[index]],
+                            GraphId: dbGraph.id
+                        })
+                    }
+                });
+            });
+        });
+    });
+
 
     //console.log("datas TO be Process", datasToProcess);
 
@@ -139,7 +175,7 @@ function parseDatas(datasToProcess) {
     // });
     // //const lab = chartXs.slice(1);
     // //console.log("ChartXs", lab);
-    return { chartLabel, chartXs, chartDatas };
+    //return { chartLabel, chartXs, chartDatas };
     //return { xs, ys108, ys97, ys120, ys111, ys20, ys15 };
 }
 
