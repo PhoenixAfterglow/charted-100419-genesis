@@ -40,86 +40,82 @@ module.exports = function(app) {
     // If a user who is not logged in tries to access this route they will be redirected to the signup page
     app.get("/members", isAuthenticated, function(req, res) {
 
-        let charted = {
-            "graphName": [],
-            "graphLabel": [],
-            "graphXs": [],
-            "graphYxValue": []
-        };
+        // //getting the chart collection from the database
+        // db.ChartCollection.findAll({
+        //     where: {
+        //         UserId: req.user.id
+        //     }
+        // }).then(gCollection => {
 
-        //getting the chart collection from the database
-        db.ChartCollection.findAll({
-            where: {
-                UserId: req.user.id
-            }
-        }).then(gCollection => {
+        //     gCollection.forEach(graphCollect => {
 
-            gCollection.forEach(graphCollect => {
+        //         //adding the graph name to the object array
+        //         let graphName = graphCollect.dataValues.chartName;
 
-                //adding the graph name to the object array
-                let graphName = graphCollect.dataValues.chartName;
-                console.log("graph Name", graphName)
-                charted.graphName.push(graphName);
-                console.log("Charted", charted);
-            });
+        //         charted.graphName = graphName;
 
-            //res.json(dbTodo);
-            return gCollection;
-        }).then(chart => {
+        //     });
 
-            let cId = [];
+        //     //res.json(dbTodo);
+        //     return gCollection;
+        // }).then(chart => {
 
-            //getting back the chart ID to use for graph label retreival 
-            chart.forEach(chartId => {
+        //     let cId = [];
 
-                cId.push(chartId.dataValues.id)
-            });
+        //     //getting back the chart ID to use for graph label retreival 
+        //     chart.forEach(chartId => {
 
-            // getting all the graph label
-            db.Graph.findAll({
-                where: {
-                    ChartCollectionId: cId
-                }
-            }).then(chart => {
+        //         cId.push(chartId.dataValues.id)
+        //     });
 
-                chart.forEach(chartDatas => {
+        //     // getting all the graph label
+        //     db.Graph.findAll({
+        //         where: {
+        //             ChartCollectionId: cId
+        //         }
+        //     }).then(chart => {
 
-                    let graphLabel = chartDatas.dataValues.graphLabel;
-                    console.log("Graph Label", graphLabel);
-                    charted.graphLabel.push(graphLabel);
+        //         chart.forEach(chartDatas => {
 
-                    console.log("Charted", charted);
+        //             let graphLabel = chartDatas.dataValues.graphLabel;
 
-                })
-                return chart;
-            }).then(xsValue => {
-                let graphId = [];
-                xsValue.forEach(xs => {
+        //             charted.dataSet.datasets[0].label = graphLabel;
 
-                    graphId.push(xs.dataValues.id);
-                });
-                // getting the xs and ys values
-                db.DataXYPair.findAll({
-                    where: {
-                        graphId: graphId
-                    }
-                }).then(xsYsV => {
+        //             db.DataXYPair.findAll({
+        //                 where: {
+        //                     graphId: chartDatas.dataValues.id
+        //                 }
+        //             }).then(xsYsValue => {
 
-                    xsYsV.forEach(xsYs => {
+        //                 xsYsValue.forEach(xsYs => {
 
-                        console.log(xsYs.dataValues);
-                        const xsValue = xsYs.dataValues.xValue;
-                        const ysValue = xsYs.dataValues.yValue;
+        //                   let dSet = {
+        //                     "label": '108 5mo',
+        //                     "data": [26, 35.2,  29.9, 25.6, 7.9],
+        //                     "fill": false,
+        //                     "backgroundColor": 'rgba(255, 99, 132, 0.2)',
+        //                     "borderColor": 'rgba(255, 99, 132, 1)',
+        //                     "borderWidth": 1
+        //                    }
 
-                        charted.graphXs.push(xsValue);
-                        charted.graphYxValue.push(ysValue);
-                    })
-                    console.log(charted);
-                })
+        //                     charted.dataSet.datasets[0].data.push(xsYs.dataValues.yValue);
+        //                     charted.dataSet.labels.push(xsYs.dataValues.xValue)
 
-            })
-        })
-        console.log(charted);
+        //                 });
+
+        //             });
+
+        //             console.log("Charted", charted);
+        //             console.log("Charted Labels", charted.dataSet.labels);
+        //             console.log("Charted Data", charted.dataSet.datasets[0].data);
+        //             console.log("Charted Label", charted.dataSet.datasets[0].label);
+
+
+        //         })
+        //         return chart;
+        //     })
+        // });
+
         res.sendFile(path.join(__dirname, "../public/members.html"));
 
     });

@@ -27,4 +27,43 @@ $(document).ready(function() {
 
     // });
 
+
+    $.get("/api/chartcollection").then((datas) => {
+
+        console.log(datas);
+
+        let ul = $("<ul>");
+        let chartDisplay = $("#chartList");
+
+        datas.forEach(chart => {
+
+            let li = $("<li>");
+            let link = $("<span>").attr({
+                "data-id": chart.id
+            }).addClass("nav-item chartlink").text(chart.chartName).appendTo(li);
+            li.appendTo(ul);
+        });
+
+        ul.appendTo(chartDisplay);
+
+    });
+
+    $(document).on("click", ".chartlink", (event) => {
+
+        console.log("click", event);
+
+        const chartId = $(event.currentTarget).attr("data-id");
+
+        $.get(`/api/chart/${chartId}`, (chartDatas) => {
+
+            console.log(chartDatas);
+
+
+        });
+
+
+
+
+    });
+
 });

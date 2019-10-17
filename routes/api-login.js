@@ -54,4 +54,71 @@ module.exports = function(app) {
             });
         }
     });
+
+    app.get("/api/chartcollection", (req, res) => {
+
+        db.ChartCollection.findAll({
+            where: {
+                UserId: req.user.id
+            },
+            include: [db.Graph]
+        }).then(listChart => {
+
+            res.json(listChart);
+        })
+
+    });
+
+    app.get("/api/chart/:id", (req, res) => {
+
+        let charted = {
+            "graphName": '',
+            "graphLabel": [],
+            "dataSet": []
+        };
+
+        // {
+        //     "label": '108 5mo',
+        //     "data": [26, 35.2,  29.9, 25.6, 7.9],
+
+        //    }
+        db.ChartCollection.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [{
+                model: db.Graph,
+                include: [db.DataXYPair]
+            }]
+        }).then(dbchart => {
+
+            charted.graphName = dbchart.chartName;
+
+            dbchart.Graphs[0].DataXYPairs.forEach(xyPair => {
+
+                charted.graphLabel.push(xyPair.xValue);
+
+            });
+
+            dbchart.Graphs.forEach((graph, index) => {
+
+                charted.dataSet.push({
+                    label: graph.graphLabel,
+                    data: graph.DataXYPairs.map(xyPair => xyPair.yValue),
+                    "fill": false,
+                    "backgroundColor": 'rgba(255, 99, 132, 0.2)',
+                    "borderColor": 'rgba(255, 99, 132, 1)',
+                    "borderWidth": 1
+                })
+
+            })
+
+            res.json(charted);
+        })
+
+
+    });
+
+
+
 };
