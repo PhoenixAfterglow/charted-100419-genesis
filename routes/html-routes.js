@@ -40,7 +40,11 @@ module.exports = function(app) {
     // If a user who is not logged in tries to access this route they will be redirected to the signup page
     app.get("/members", isAuthenticated, function(req, res) {
 
-        db.GraphCollection.findAll({}).then(gCollection => {
+        db.ChartCollection.findAll({
+            where: {
+                UserId: req.user.id
+            }
+        }).then(gCollection => {
 
             console.log(gCollection);
             //res.json(dbTodo);
