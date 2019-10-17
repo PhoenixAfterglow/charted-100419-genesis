@@ -84,3 +84,7 @@ input#password-input.form-control {
 #graphArea {
     background-color: white;
 }
+
+.carousel-item {
+    margin-left: 25px;
+}
