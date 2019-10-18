@@ -1,32 +1,73 @@
 $(document).ready(function() {
 
+    /* GENERAL VARIABLES
+    ===================================================================== */
+
     const $chartDisplay = $("canvas#chart");
     const graphName = $("input#chartName-input").val().trim();
 
-    // This file just does a GET request to figure out which user is logged in
-    // and updates the HTML on the page
+
+    $chartDisplay.hide();
+
+    /* FUNCTIONS
+    ===================================================================== */
+
+    function displayGraphDatas(datasP) {
+
+        $chartDisplay.show();
+
+        console.log(datasP);
+        // const chickenDatas = getDatas(datasP);
+
+        // // Generate datas set for the graph line display
+        // async function chartDataSet(chickenDatas) {
+
+        //     const chartL = chickenDatas.chartLabel.label;
+        //     chartL.forEach((dataSet, index) => {
+
+        //         //console.log(dataSet, index);
+        //         const dSet = {
+        //             "label": dataSet,
+        //             "data": chickenDatas.chartDatas.xsValue[index],
+        //             "fill": false,
+        //             "backgroundColor": backgroundColor[index],
+        //             "borderColor": borderColor[index],
+        //             "borderWidth": 1
+        //         };
+        //         dSetArr.push(dSet);
+        //     });
+        //     console.log("dSetArr", dSetArr);
+        //     return dSetArr;
+        // };
+
+        const ctx = document.getElementById('chart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: datasP.graphLabel,
+                datasets: datasP.dataSet
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+
+    /* API CALLS
+    ===================================================================== */
+
+    //Get information on the connected user and Display User name
     $.get("/api/user_data").then(function(data) {
 
         $(".member-name").text(data.username);
     });
-
-    $chartDisplay.hide();
-
-    // loginForm.on("submit", function(event) {
-
-    //     $.post("/api/upload", {
-    //             graphName: graphName
-    //         })
-    //         .then(function() {
-    //             window.location.replace("/members");
-    //             // If there's an error, log the error
-    //         })
-    //         .catch(function(err) {
-    //             console.log(err);
-    //         });
-
-    // });
-
 
     $.get("/api/chartcollection").then((datas) => {
 
@@ -50,19 +91,13 @@ $(document).ready(function() {
 
     $(document).on("click", ".chartlink", (event) => {
 
-        console.log("click", event);
-
         const chartId = $(event.currentTarget).attr("data-id");
 
         $.get(`/api/chart/${chartId}`, (chartDatas) => {
 
-            console.log(chartDatas);
-
+            displayGraphDatas(chartDatas);
 
         });
-
-
-
 
     });
 

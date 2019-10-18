@@ -71,17 +71,15 @@ module.exports = function(app) {
 
     app.get("/api/chart/:id", (req, res) => {
 
+        const backgroundColor = ['rgba(255, 99, 132, 0.2)', 'rgba(167,105,0,0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(220,220,220,0.2)'];
+        const borderColor = ['rgba(255, 99, 132, 1)', 'rgb(167, 105, 0)', 'rgba(153, 102, 255, 1)', 'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)', 'rgba(220,220,220,1)'];
+
         let charted = {
             "graphName": '',
             "graphLabel": [],
             "dataSet": []
         };
 
-        // {
-        //     "label": '108 5mo',
-        //     "data": [26, 35.2,  29.9, 25.6, 7.9],
-
-        //    }
         db.ChartCollection.findOne({
             where: {
                 id: req.params.id
@@ -105,9 +103,17 @@ module.exports = function(app) {
                 charted.dataSet.push({
                     label: graph.graphLabel,
                     data: graph.DataXYPairs.map(xyPair => xyPair.yValue),
-                    "fill": false,
-                    "backgroundColor": 'rgba(255, 99, 132, 0.2)',
-                    "borderColor": 'rgba(255, 99, 132, 1)',
+                    "fill": true,
+                    "fillOpacity:": .3,
+                    "backgroundColor": backgroundColor[index],
+                    "borderColor": borderColor[index],
+                    "pointBorderColor": borderColor[index],
+                    "pointBackgroundColor": backgroundColor[index],
+                    "pointHoverBorderColor": borderColor[index],
+                    "pointHoverBackgroundColor": backgroundColor[index],
+                    "pointBorderWidth": 5,
+                    "pointHoverRadius": 5,
+                    "pointHoverBorderWidth": 1,
                     "borderWidth": 1
                 })
 
@@ -116,9 +122,5 @@ module.exports = function(app) {
             res.json(charted);
         })
 
-
     });
-
-
-
 };
