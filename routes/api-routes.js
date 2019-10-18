@@ -3,6 +3,10 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app) {
+
+    /* LOGIN ROUTES
+    ========================================================= */
+
     // Using the passport.authenticate middleware with our local strategy.
     // If the user has valid login credentials, send them to the members page.
     // Otherwise the user will be sent an error
@@ -35,6 +39,10 @@ module.exports = function(app) {
         res.redirect("/");
     });
 
+
+    /* USER DATAS ROUTES
+    ========================================================= */
+
     // Route for getting some data about our user to be used client side
     app.get("/api/user_data", function(req, res) {
         if (!req.user) {
@@ -54,6 +62,10 @@ module.exports = function(app) {
             });
         }
     });
+
+
+    /* CHART DATAS PROCESS ROUTES
+    ========================================================= */
 
     app.get("/api/chartcollection", (req, res) => {
 
@@ -115,12 +127,23 @@ module.exports = function(app) {
                     "pointHoverRadius": 5,
                     "pointHoverBorderWidth": 1,
                     "borderWidth": 1
-                })
-
-            })
+                });
+            });
 
             res.json(charted);
         })
 
+    });
+
+    // DELETE route for deleting Chart
+    app.delete("/api/chart/:id", function(req, res) {
+        db.ChartCollection.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(function(dbChart) {
+                res.json(dbChart);
+            });
     });
 };
