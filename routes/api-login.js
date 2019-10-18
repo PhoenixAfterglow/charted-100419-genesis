@@ -54,4 +54,73 @@ module.exports = function(app) {
             });
         }
     });
+
+    app.get("/api/chartcollection", (req, res) => {
+
+        db.ChartCollection.findAll({
+            where: {
+                UserId: req.user.id
+            },
+            include: [db.Graph]
+        }).then(listChart => {
+
+            res.json(listChart);
+        })
+
+    });
+
+    app.get("/api/chart/:id", (req, res) => {
+
+        const backgroundColor = ['rgba(255, 99, 132, 0.2)', 'rgba(167,105,0,0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(220,220,220,0.2)'];
+        const borderColor = ['rgba(255, 99, 132, 1)', 'rgb(167, 105, 0)', 'rgba(153, 102, 255, 1)', 'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)', 'rgba(220,220,220,1)'];
+
+        let charted = {
+            "graphName": '',
+            "graphLabel": [],
+            "dataSet": []
+        };
+
+        db.ChartCollection.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [{
+                model: db.Graph,
+                include: [db.DataXYPair]
+            }]
+        }).then(dbchart => {
+
+            charted.graphName = dbchart.chartName;
+
+            dbchart.Graphs[0].DataXYPairs.forEach(xyPair => {
+
+                charted.graphLabel.push(xyPair.xValue);
+
+            });
+
+            dbchart.Graphs.forEach((graph, index) => {
+
+                charted.dataSet.push({
+                    label: graph.graphLabel,
+                    data: graph.DataXYPairs.map(xyPair => xyPair.yValue),
+                    "fill": true,
+                    "fillOpacity:": .3,
+                    "backgroundColor": backgroundColor[index],
+                    "borderColor": borderColor[index],
+                    "pointBorderColor": borderColor[index],
+                    "pointBackgroundColor": backgroundColor[index],
+                    "pointHoverBorderColor": borderColor[index],
+                    "pointHoverBackgroundColor": backgroundColor[index],
+                    "pointBorderWidth": 5,
+                    "pointHoverRadius": 5,
+                    "pointHoverBorderWidth": 1,
+                    "borderWidth": 1
+                })
+
+            })
+
+            res.json(charted);
+        })
+
+    });
 };

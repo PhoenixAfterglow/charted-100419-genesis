@@ -1,83 +1,16 @@
 const db = require("../models");
 
-/* CHART DISPLAY
----------------------- */
-
-function displayGraphDatas(datasP) {
-
-    const dSetArr = [];
-    const backgroundColor = ['rgba(255, 99, 132, 0.2)', 'rgba(167,105,0,0.4)', 'rgba(220,220,220,0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'];
-    const borderColor = ['rgba(255, 99, 132, 1)', 'rgb(167, 105, 0)', 'rgba(220,220,220,1)', 'rgba(54, 162, 235, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'];
-    // const chickenDatas = getDatas(datasP);
-
-    // Generate datas set for the graph line display
-    async function chartDataSet(chickenDatas) {
-
-        const chartL = chickenDatas.chartLabel.label;
-        chartL.forEach((dataSet, index) => {
-
-            //console.log(dataSet, index);
-            const dSet = {
-                "label": dataSet,
-                "data": chickenDatas.chartDatas.xsValue[index],
-                "fill": false,
-                "backgroundColor": backgroundColor[index],
-                "borderColor": borderColor[index],
-                "borderWidth": 1
-            };
-            dSetArr.push(dSet);
-        });
-        console.log("dSetArr", dSetArr);
-        return dSetArr;
-    };
-
-    console.log("Graph Chicken Data", chickenDatas);
-    const ctx = document.getElementById('chart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: chickenDatas.chartXs.xs.slice(1),
-            datasets: chartDataSet(chickenDatas)
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-}
-/*
-------------------------------  */
-
 
 /* PARSING GRAPH DATA FROM CSV
 ------------------------------ */
 
 function parseDatas(datasToProcess, req) {
 
-    // const chartName = "Chicken Grass";
-    // const chartID = 1;
-    // const chartUserID = 1;
-    // const chartLabel = {
-    //     "label": []
-    // };
-    // const chartXs = {
-    //     "xs": []
-    // };
-    // const chartDatas = {
-    //     "xsValue": []
-    // };
-
-
-
+    // Create Chart Collection model
     db.ChartCollection.create({
         chartName: req.body.chartName,
         UserId: req.user.id
-    }).then(function(dbChart) {
+    }).then(dbChart => {
 
         datasToProcess.forEach((graph, index) => {
 
@@ -181,6 +114,5 @@ function parseDatas(datasToProcess, req) {
 
 
 module.exports = {
-    displayGraphDatas: displayGraphDatas,
     parseDatas: parseDatas
 }

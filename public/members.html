@@ -5,6 +5,7 @@
     <title>Charted - Member Dashboard</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 
@@ -44,12 +45,18 @@
                         </div>
                     </div>
                 </form>
+
+                <div class="container mt-5" id="chartList">
+
+                </div>
                 <br>
                 <br>
+
                 <div class="container" id="graphArea">
                     <canvas id="chart"></canvas>
                 </div>
             </div>
+
             <!-- end of test area -->
         </div>
     </div>
