@@ -15,10 +15,14 @@ module.exports = function(sequelize, DataTypes) {
 
         Graph.belongsTo(models.ChartCollection, {
             foreignKey: {
-                allowNull: false
+                allowNull: false,
+                onDelete: "cascade",
+                onUpdate: "cascade"
             }
         });
         Graph.hasMany(models.DataXYPair, {
+            onDelete: "cascade",
+            onUpdate: "cascade",
             foreignKey: {
                 allowNull: false
             }

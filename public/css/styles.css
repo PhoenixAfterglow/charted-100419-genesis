@@ -7,15 +7,55 @@
 /*
 ============================== */
 
-.container {
+body {
+    background-color: #364350;
+    margin-bottom: 60px;
+    margin: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+div.container {
     margin-top: 0px;
-    margin-left: 10px;
+    margin-left: 6%;
+}
+
+div.card {
+    background-color: #ffffff05;
+    border: 1px solid rgb(172, 142, 8);
+}
+
+div.card-header {
+    color: white;
+    font-weight: bold;
+    background-color: rgb(172, 142, 8);
+}
+
+li.list-group-item {
+    background-color: #fff0 !important;
 }
 
 .data {
     padding: 10px;
     margin: 10px;
     background-color: #e8f9ff;
+}
+
+.chartlink,
+.updlnk,
+.dellnk {
+    cursor: pointer;
+}
+
+li i {
+    float: right;
+}
+
+li i.dellnk {
+    color: #bd1717;
+}
+
+li i.updlnk {
+    color: rgb(5, 146, 5);
 }
 
 input,
@@ -54,13 +94,6 @@ p {
 
 label {
     color: #acb1b5;
-}
-
-body {
-    background-color: #364350;
-    margin-bottom: 60px;
-    margin: 40px;
-    font-family: 'Montserrat', sans-serif;
 }
 
 input#userName-input.form-control {

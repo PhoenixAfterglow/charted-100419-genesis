@@ -1,5 +1,3 @@
-
-
 module.exports = function(sequelize, DataTypes) {
     const ChartCollection = sequelize.define("ChartCollection", {
         chartName: {
@@ -16,9 +14,12 @@ module.exports = function(sequelize, DataTypes) {
             }
         });
         ChartCollection.hasMany(models.Graph, {
+            onDelete: "cascade",
+            onUpdate: "cascade",
             foreignKey: {
                 allowNull: false
-            } 
+
+            }
         })
     };
 

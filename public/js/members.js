@@ -4,10 +4,17 @@ $(document).ready(function() {
     ===================================================================== */
 
     const $chartDisplay = $("canvas#chart");
-    const graphName = $("input#chartName-input").val().trim();
-
+    const $uploadMessage = $("div#uploadMessage");
+    const $uploadDatas = $("div#uploadDatas");
+    const $graphMessage = $("div#graphMessage");
+    const $chartListDisplay = $("div#chartListDisplay");
 
     $chartDisplay.hide();
+    $uploadDatas.hide();
+    $uploadMessage.hide();
+    $graphMessage.hide();
+    $chartListDisplay.hide();
+
 
     /* FUNCTIONS
     ===================================================================== */
@@ -15,30 +22,6 @@ $(document).ready(function() {
     function displayGraphDatas(datasP) {
 
         $chartDisplay.show();
-
-        console.log(datasP);
-        // const chickenDatas = getDatas(datasP);
-
-        // // Generate datas set for the graph line display
-        // async function chartDataSet(chickenDatas) {
-
-        //     const chartL = chickenDatas.chartLabel.label;
-        //     chartL.forEach((dataSet, index) => {
-
-        //         //console.log(dataSet, index);
-        //         const dSet = {
-        //             "label": dataSet,
-        //             "data": chickenDatas.chartDatas.xsValue[index],
-        //             "fill": false,
-        //             "backgroundColor": backgroundColor[index],
-        //             "borderColor": borderColor[index],
-        //             "borderWidth": 1
-        //         };
-        //         dSetArr.push(dSet);
-        //     });
-        //     console.log("dSetArr", dSetArr);
-        //     return dSetArr;
-        // };
 
         const ctx = document.getElementById('chart').getContext('2d');
         const myChart = new Chart(ctx, {
@@ -60,8 +43,80 @@ $(document).ready(function() {
     }
 
 
+    function getChartCollection() {
+
+        $.get("/api/chartcollection").then((datas) => {
+            console.log(datas);
+            if (datas.length > 0) {
+
+                $graphMessage.show();
+                $chartListDisplay.show();
+                let ul = $("<ul>").addClass("list-group list-group-flush");
+                let chartDisplay = $("#chartList");
+
+                datas.forEach(chart => {
+
+                    let li = $("<li>")
+                        .addClass("list-group-item");
+
+                    let link = $("<span>")
+                        .attr({
+                            "data-id": chart.id
+                        })
+                        .addClass("nav-item chartlink")
+                        .text(chart.chartName)
+                        .appendTo(li);
+
+                    let updateLnk = $("<i>")
+                        .addClass("far fa-edit updlnk ml-3")
+                        .attr({
+                            "data-id": chart.id
+                        })
+                        .appendTo(li);
+
+                    let deleteLnk = $("<i>")
+                        .addClass("far fa-trash-alt dellnk ml-3")
+                        .attr({
+                            "data-id": chart.id
+                        })
+                        .appendTo(li);
+
+                    li.appendTo(ul);
+                });
+
+                ul.appendTo(chartDisplay);
+
+            } else {
+
+                $uploadMessage.show();
+            }
+
+        });
+
+    }
+
+    function deleteChartCollection(chartId) {
+
+        $.ajax({
+                method: "DELETE",
+                url: `/api/chart/${chartId}`
+            })
+            .then(getChartCollection);
+
+    }
+
+
+
+    // Update Chart Information
+    $(document).on("click", ".updlnk", (event) => {
+
+        const chartId = $(event.currentTarget).attr("data-id");
+
+        console.log(chartId);
+    });
+
     /* API CALLS
-    ===================================================================== */
+     ===================================================================== */
 
     //Get information on the connected user and Display User name
     $.get("/api/user_data").then(function(data) {
@@ -69,25 +124,7 @@ $(document).ready(function() {
         $(".member-name").text(data.username);
     });
 
-    $.get("/api/chartcollection").then((datas) => {
-
-        console.log(datas);
-
-        let ul = $("<ul>");
-        let chartDisplay = $("#chartList");
-
-        datas.forEach(chart => {
-
-            let li = $("<li>");
-            let link = $("<span>").attr({
-                "data-id": chart.id
-            }).addClass("nav-item chartlink").text(chart.chartName).appendTo(li);
-            li.appendTo(ul);
-        });
-
-        ul.appendTo(chartDisplay);
-
-    });
+    // Get Chart information
 
     $(document).on("click", ".chartlink", (event) => {
 
@@ -101,4 +138,18 @@ $(document).ready(function() {
 
     });
 
+
+    /* EVENTS
+      ===================================================================== */
+
+
+    // Delete Chart Information
+    $(document).on("click", ".dellnk", (event) => {
+
+        const chartId = $(event.currentTarget).attr("data-id");
+
+        deleteChartCollection(chartId);
+    });
+
+    getChartCollection();
 });

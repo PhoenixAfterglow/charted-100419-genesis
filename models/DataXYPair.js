@@ -1,5 +1,3 @@
-
-
 module.exports = function(sequelize, DataTypes) {
     const DataXYPair = sequelize.define("DataXYPair", {
         // NOTE: Overriding default ID line 6, also using this ID for order #.
@@ -21,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
 
     DataXYPair.associate = function(models) {
 
-        
+
         DataXYPair.belongsTo(models.Graph, {
             foreignKey: {
                 allowNull: false
