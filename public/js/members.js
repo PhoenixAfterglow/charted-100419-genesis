@@ -8,6 +8,7 @@ $(document).ready(function() {
     const $uploadDatas = $("div#uploadDatas");
     const $graphMessage = $("div#graphMessage");
     const $chartListDisplay = $("div#chartListDisplay");
+    const chartDisplay = $("#chartList");
     const $graphArea = $("div#graphArea");
 
     $chartDisplay.hide();
@@ -53,7 +54,6 @@ $(document).ready(function() {
                 $graphMessage.show();
                 $chartListDisplay.show();
                 let ul = $("<ul>").addClass("list-group list-group-flush");
-                let chartDisplay = $("#chartList");
 
                 datas.forEach(chart => {
 
@@ -156,6 +156,7 @@ $(document).ready(function() {
         const chartId = $(event.currentTarget).attr("data-id");
 
         deleteChartCollection(chartId);
+        chartDisplay.empty();
     });
 
 
