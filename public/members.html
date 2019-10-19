@@ -47,27 +47,26 @@
                         <div class="card-body">
                             <h4 class="card-title text-white">Upload your .CSV files</h4>
                             <p class="card-text mb-4">Draw your correlation between data sets</p>
-                            <button class="btn btn-outline-secondary" type="submit" id="btnDisplayUpload">Go to Upload</button>
+                            <button class="btn btn-outline-secondary btnDisplayUpload" type="button">Go to Upload</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="uploadDatas" class="mt-5">
+            <div id="uploadDatas" class="mt-5 animated fadeInUp">
                 <h2>Upload Your Data</h2>
-                <form action="/members" method="post" enctype="multipart/form-data" class="mt-6">
-                    <div class="form-group">
+                <form action="/members" method="post" enctype="multipart/form-data" class="mt-6 was-validated">
+                    <div class="form-group mt-5">
                         <input type="text" class="form-control" id="chartName-input" name="chartName" placeholder="New Chart Name" required>
                     </div>
-                    <br>
-                    <div class="input-group">
+
+                    <div class="input-group mt-5">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon04" name="uploadCsvDatas" required>
+                            <input type="file" class="custom-file-input" name="uploadCsvDatas" id="validatedCustomFile" required>
                             <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                         </div>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit" id="btnUpload">Upload</button>
-                        </div>
                     </div>
+                    <button class="btn btn-outline-secondary mt-5" type="submit" id="btnUpload">Upload</button>
+
                 </form>
             </div>
             <div class="mt-3" id="graphArea">
@@ -81,7 +80,7 @@
                     <div id="chartList"></div>
                 </div>
             </div>
-
+            <button class="btn btn-outline-secondary btn-lg btn-block btnDisplayUpload" type="button">Add a Graph</button>
         </div>
 
         <!-- end of test area -->

@@ -8,6 +8,7 @@ $(document).ready(function() {
     const $uploadDatas = $("div#uploadDatas");
     const $graphMessage = $("div#graphMessage");
     const $chartListDisplay = $("div#chartListDisplay");
+    const $graphArea = $("div#graphArea");
 
     $chartDisplay.hide();
     $uploadDatas.hide();
@@ -87,14 +88,17 @@ $(document).ready(function() {
                 ul.appendTo(chartDisplay);
 
             } else {
-
                 $uploadMessage.show();
+                $chartListDisplay.hide();
+                $graphMessage.hide();
+                $graphArea.hide();
             }
 
         });
 
     }
 
+    // Delete Chart Collection
     function deleteChartCollection(chartId) {
 
         $.ajax({
@@ -133,6 +137,9 @@ $(document).ready(function() {
         $.get(`/api/chart/${chartId}`, (chartDatas) => {
 
             displayGraphDatas(chartDatas);
+            $uploadDatas.hide();
+            $graphMessage.show();
+            $graphArea.show();
 
         });
 
@@ -151,5 +158,27 @@ $(document).ready(function() {
         deleteChartCollection(chartId);
     });
 
+
+    //Display Chart upload form 
+    $(".btnDisplayUpload").on("click", (event) => {
+
+        $uploadMessage.hide();
+        $uploadDatas.show();
+        $graphMessage.hide();
+        $graphArea.hide();
+    });
+
+
+
+    $('#validatedCustomFile').on('change', function(event) {
+
+        console.log(event);
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    });
+
     getChartCollection();
+
 });

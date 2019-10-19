@@ -58,10 +58,11 @@ li i.updlnk {
     color: rgb(5, 146, 5);
 }
 
-input,
+
+/* input,
 textarea {
     margin: 20px;
-}
+} */
 
 .btn {
     margin-left: 0px;
