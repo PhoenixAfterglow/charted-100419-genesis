@@ -34,6 +34,10 @@ li.list-group-item {
     background-color: #fff0 !important;
 }
 
+li.list-group-item.active {
+    color: #937905;
+}
+
 .data {
     padding: 10px;
     margin: 10px;
@@ -58,10 +62,11 @@ li i.updlnk {
     color: rgb(5, 146, 5);
 }
 
-input,
+
+/* input,
 textarea {
     margin: 20px;
-}
+} */
 
 .btn {
     margin-left: 0px;
