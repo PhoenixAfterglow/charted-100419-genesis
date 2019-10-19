@@ -10,6 +10,8 @@ $(document).ready(function() {
     const $chartListDisplay = $("div#chartListDisplay");
     const chartDisplay = $("#chartList");
     const $graphArea = $("div#graphArea");
+    const $graphDataInfo = $("div#graphDataInfo");
+    const $graphUpdate = $("div#graphUpdate");
 
     $chartDisplay.hide();
     $uploadDatas.hide();
@@ -69,7 +71,7 @@ $(document).ready(function() {
                         .appendTo(li);
 
                     let updateLnk = $("<i>")
-                        .addClass("far fa-edit updlnk ml-3")
+                        .addClass("far fa-edit updatelink ml-3")
                         .attr({
                             "data-id": chart.id
                         })
@@ -92,6 +94,7 @@ $(document).ready(function() {
                 $chartListDisplay.hide();
                 $graphMessage.hide();
                 $graphArea.hide();
+                $uploadDatas.hide();
             }
 
         });
@@ -112,9 +115,49 @@ $(document).ready(function() {
 
 
     // Update Chart Information
-    $(document).on("click", ".updlnk", (event) => {
+    $(document).on("click", ".updatelink", (event) => {
+
+        $graphDataInfo.empty();
+        $graphUpdate.show();
 
         const chartId = $(event.currentTarget).attr("data-id");
+
+        $.get(`/api/chart/${chartId}`, (chartDatas) => {
+
+            console.log(chartDatas);
+
+            let graphNameTitle = $("<p>")
+                .html(`Graph Name: ${chartDatas.graphName}<br><br>`)
+                .appendTo($graphDataInfo)
+                .addClass("mb-3 white-text");
+
+            chartDatas.dataSet.forEach(datas => {
+
+                let graphLabel = $("<p>")
+                    .html(`Graph Label: ${datas.label}`)
+                    .appendTo($graphDataInfo);
+
+                let yValueUl = $("<ul>");
+
+                datas.data.forEach(ylist => {
+
+                    let yValueList = $("<li>")
+                        .html(ylist)
+                        .addClass("white-text")
+                        .appendTo(yValueUl);
+                });
+
+                yValueUl.appendTo($graphDataInfo);
+
+                console.log(datas);
+
+            });
+
+
+            $graphMessage.hide();
+            $uploadDatas.hide();
+            $graphArea.hide();
+        });
 
         console.log(chartId);
     });
@@ -136,11 +179,11 @@ $(document).ready(function() {
 
         $.get(`/api/chart/${chartId}`, (chartDatas) => {
 
+            console.log(chartDatas);
             displayGraphDatas(chartDatas);
             $uploadDatas.hide();
             $graphMessage.show();
             $graphArea.show();
-
         });
 
     });
@@ -167,10 +210,10 @@ $(document).ready(function() {
         $uploadDatas.show();
         $graphMessage.hide();
         $graphArea.hide();
+        $graphUpdate.hide();
     });
 
-
-
+    // On File upload change the label name to file name
     $('#validatedCustomFile').on('change', function(event) {
 
         console.log(event);
@@ -179,6 +222,8 @@ $(document).ready(function() {
         //replace the "Choose a file" label
         $(this).next('.custom-file-label').html(fileName);
     });
+
+
 
     getChartCollection();
 
