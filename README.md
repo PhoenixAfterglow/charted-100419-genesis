@@ -4,7 +4,7 @@ Charted is an app geared for farmers and ranchers struggling to decipher their l
 
 ### Prerequisites
 
-If you don't have Visual Studio Code, Node.js and / or Terminal / GitBash installed, you will not be able to run this app.
+You simply need to create an account through Charted by adding your full name, email, and password.
 
 ## Getting Started
 
