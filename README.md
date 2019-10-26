@@ -13,15 +13,15 @@ https://charted-v1-0.herokuapp.com/
 
 Follow the on-screen instructions and SIGN UP (or LOG IN if an account was already created.)
 
-![](images/screenshot01.png)
+![](public/images/screenshot01.png)
 
 Once in, upload a .CSV file and then click to display your chart.
 
-![](images/screenshot02.png)
+![](public/images/screenshot02.png)
 
 NOTE:  Since this app has User Authentication and Validation through PassportJS, the User can save their chart(s) since it is securely held within our MySQL database.
 
-![](images/screenshot03.png)
+![](public/images/screenshot03.png)
 
 ## Future Developments
 We plan on adding more features including, but not limiting to, manual User entry.
