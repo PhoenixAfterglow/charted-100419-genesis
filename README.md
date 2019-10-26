@@ -33,23 +33,41 @@ We plan on adding more features including, but not limiting to, manual User entr
 ## Built With
 
 * [Git](https://git-scm.com/) - The terminal / bash framework used
+* [JavaScript](https://www.javascript.com/) - Main programming / coding language
+* [PassportJS](http://www.passportjs.org/) - User authentication / validation
+* [ChartJS](https://www.chartjs.org/) - JavaScript for displaying dynamic charts
+* [SQL / MySQL](https://www.mysql.com/) - Database language used for app
+* [Sequelize](https://sequelize.org/) - A promise-based ORM for Node.js
+* [NodeJS](https://nodejs.org/en/) - An open-source, cross-platform, environment that executes JavaScript code outside of a browser
+* [ExpressJS](https://expressjs.com/) - Unopinionated, minimalist web framework for Node.js
+* [Heroku](https://www.heroku.com/) - A cloud platform as a service supporting several programming languages; used for deployement
 
 ## Dependencies
 
+* [bcryptjs](https://www.npmjs.com/package/bcryptjs) - Encryption
+* [dotenv](https://www.npmjs.com/package/dotenv) - A zero-dependency module that loads environment variables from a .env file into process.env
+* [dotenv-json](https://www.npmjs.com/package/dotenv-json) - Defines environment variables in .env.json in the root of your project
 * [express](https://www.npmjs.com/package/express) - Express Server
-* [mysql](https://www.npmjs.com/package/axios) - Allows Node.js to connect to a MySQL database (DB).
-* [express](https://www.npmjs.com/package/express) - Express Server
-* [cli-table](https://www.npmjs.com/package/cli-table) - CLI Table creates a simple "GUI" in Node.js
+* [express-session](https://www.npmjs.com/package/express-session) - Express middleware
+* [multer](https://www.npmjs.com/package/multer) - Middleware for handling multipart / form-data, which is primarily used for uploading files
+* [mysql2](https://www.npmjs.com/package/mysql2) - Increases database performance
+* [passport](https://www.npmjs.com/package/passport) - Authentication
+* [passport-local](https://www.npmjs.com/package/passport-local) - Local authentication
+* [sequelize](https://www.npmjs.com/package/sequelize) - Used for Database
+
 
 ## Authors / Collaborators
 
 FRONT END
-* **Maria Shady** - *Homework for UNH Bootcamp* - [Maria Shady on GitHub](https:/#)
+* **Aly Shields** - *Project 2 for UNH Bootcamp* - [Aly Shields on GitHub](#)
+* **Maria Shady** - *Project 2 for UNH Bootcamp* - [Maria Shady on GitHub](https://github.com/mariashady)
 
 BACK END
-* **Johnny Maravelis** - *Homework for UNH Bootcamp* - [PhoenixAfterglow on GitHub](https://github.com/PhoenixAfterglow)
+* **Ibrahim Yunus** - *Project 2 for UNH Bootcamp* - [Yunusib12 on GitHub](https://github.com/Yunusib12)
+* **Johnny Maravelis** - *Project 2 for UNH Bootcamp* - [PhoenixAfterglow on GitHub](https://github.com/PhoenixAfterglow)
+* **Jason McGowan** - *Project 2 for UNH Bootcamp* - [Jasonmcgowan14 on GitHub](https://github.com/Jasonmcgowan14)
 
 
 ## Acknowledgments
 
-* Thank you to UNH Bootcamp instructor / TAs for clearing things up when I hit my head against many walls.
+* Thank you to UNH Bootcamp instructor (Scott Byers) / TAs (Michael Fearnley, Bobby Hoffman) for clearing things up when I hit my head against many walls.  Also a special thank you to fellow classmate Markus Markowich for sharing some insight and knowledge in the field of Biological Science, particularly with Agriculture.
